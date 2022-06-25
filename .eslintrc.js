@@ -21,12 +21,16 @@ module.exports = {
     'simple-import-sort',
   ],
   rules: {
-    // increase the severity of rules so they are auto-fixable
     'simple-import-sort/imports': 'error',
     'simple-import-sort/exports': 'error',
+    'react/jsx-filename-extension': [
+      'error',
+      {
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      },
+    ],
   },
   overrides: [
-    // override "simple-import-sort" config
     {
       files: ['*.js', '*.jsx', '*.ts', '*.tsx'],
       rules: {
