@@ -14,18 +14,18 @@ const styles = StyleSheet.create({
   },
 });
 
-type Props = NativeStackScreenProps<StackParamList, 'Home'>;
+type Props = NativeStackScreenProps<StackParamList, 'Schedule'>;
 
-function HomeScreen({ navigation }: Props) {
+function ScheduleScreen({ navigation }: Props) {
   return (
     <View style={styles.container}>
-      <Text>Home Screen</Text>
+      <Text>Full Schedule</Text>
       <Button
-        title="View Schedule"
-        onPress={() => navigation.navigate('Schedule')}
+        title="Go Home"
+        onPress={() => navigation.navigate('Home')}
       />
     </View>
   );
 }
 
-export default HomeScreen;
+export default ScheduleScreen;
