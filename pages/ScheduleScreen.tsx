@@ -1,15 +1,11 @@
 import React from 'react';
-import { Button, Text } from 'react-native';
+import { Text } from 'react-native';
 import { useQuery } from 'react-query';
-import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 import Container from '../components/Container';
 import { fetchCurrentSeason } from '../lib/apiCalls';
-import { StackParamList } from '../types';
 
-type Props = NativeStackScreenProps<StackParamList, 'Schedule'>;
-
-function ScheduleScreen({ navigation }: Props) {
+function ScheduleScreen() {
   const currentSeasonQuery = useQuery('currentSeason', fetchCurrentSeason);
 
   if (currentSeasonQuery.isLoading) {
@@ -40,7 +36,6 @@ function ScheduleScreen({ navigation }: Props) {
         races this season.
       </Text>
 
-      <Button title="Go Home" onPress={() => navigation.navigate('Home')} />
     </Container>
   );
 }

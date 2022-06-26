@@ -1,15 +1,11 @@
 import React from 'react';
-import { Button, Text } from 'react-native';
+import { Text, View } from 'react-native';
 import { useQuery } from 'react-query';
-import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 import Container from '../components/Container';
 import { fetchCurrentSeason, fetchLastRaceResults } from '../lib/apiCalls';
-import { StackParamList } from '../types';
 
-type Props = NativeStackScreenProps<StackParamList, 'Home'>;
-
-function HomeScreen({ navigation }: Props) {
+function HomeScreen() {
   const currentSeasonQuery = useQuery('currentSeason', fetchCurrentSeason);
   const lastRaceResultsQuery = useQuery('lastRaceResults', fetchLastRaceResults);
 
@@ -35,29 +31,31 @@ function HomeScreen({ navigation }: Props) {
 
   return (
     <Container>
-      <Text>Welcome to F1RacingNow</Text>
+      <View style={{ flex: 0 }}>
+        <Text>F1RacingNow</Text>
+      </View>
 
-      <Text>
-        Current Season:
-        {' '}
-        {currentSeasonQuery.data!.year}
-      </Text>
+      <View style={{ flex: 3 }}>
+        <Text>
+          F1
+          {' '}
+          {currentSeasonQuery.data!.year}
+        </Text>
 
-      <Text>
-        Next Race:
-        {' '}
-        {nextRace?.raceName}
-      </Text>
+        <Text>
+          Next Race:
+          {' '}
+          {nextRace?.raceName}
+        </Text>
 
-      <Text>
-        Last Race Winner:
-        {' '}
-        {lastRaceResultsQuery.data!.results[0].Driver.givenName}
-        {' '}
-        {lastRaceResultsQuery.data!.results[0].Driver.familyName}
-      </Text>
-
-      <Button title="View Schedule" onPress={() => navigation.navigate('Schedule')} />
+        <Text>
+          Last Race Winner:
+          {' '}
+          {lastRaceResultsQuery.data!.results[0].Driver.givenName}
+          {' '}
+          {lastRaceResultsQuery.data!.results[0].Driver.familyName}
+        </Text>
+      </View>
     </Container>
   );
 }
