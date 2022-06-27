@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { StatusBar, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const styles = StyleSheet.create({
@@ -13,6 +13,7 @@ const styles = StyleSheet.create({
 function Container({ children }: { children: React.ReactNode }) {
   return (
     <SafeAreaView style={styles.container}>
+      <StatusBar barStyle="light-content" />
       {children}
     </SafeAreaView>
   );

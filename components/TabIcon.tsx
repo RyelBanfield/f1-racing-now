@@ -11,7 +11,7 @@ function TabBarIcon({ name, focused }: Props) {
     <Entypo
       name={name}
       size={25}
-      color={focused ? 'red' : '#fff'}
+      color={focused ? '#DA0037' : '#EDEDED'}
       style={{ marginBottom: -10 }}
     />
   );

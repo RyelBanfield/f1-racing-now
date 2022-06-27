@@ -1,9 +1,18 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { useQuery } from 'react-query';
 
 import Container from '../components/Container';
 import { fetchCurrentSeason, fetchLastRaceResults } from '../lib/apiCalls';
+
+const styles = StyleSheet.create({
+  text: {
+    fontSize: 20,
+    textAlign: 'center',
+    margin: 10,
+    color: '#fff',
+  },
+});
 
 function HomeScreen() {
   const currentSeasonQuery = useQuery('currentSeason', fetchCurrentSeason);
@@ -12,7 +21,7 @@ function HomeScreen() {
   if (currentSeasonQuery.isLoading || lastRaceResultsQuery.isLoading) {
     return (
       <Container>
-        <Text>Loading...</Text>
+        <Text style={styles.text}>Loading...</Text>
       </Container>
     );
   }
@@ -20,7 +29,7 @@ function HomeScreen() {
   if (currentSeasonQuery.isError || lastRaceResultsQuery.isLoading) {
     return (
       <Container>
-        <Text>There was an error.</Text>
+        <Text style={styles.text}>There was an error.</Text>
       </Container>
     );
   }
@@ -31,24 +40,20 @@ function HomeScreen() {
 
   return (
     <Container>
-      <View style={{ flex: 0 }}>
-        <Text>F1RacingNow</Text>
-      </View>
-
       <View style={{ flex: 3 }}>
-        <Text>
+        <Text style={styles.text}>
           F1
           {' '}
           {currentSeasonQuery.data!.year}
         </Text>
 
-        <Text>
+        <Text style={styles.text}>
           Next Race:
           {' '}
           {nextRace?.raceName}
         </Text>
 
-        <Text>
+        <Text style={styles.text}>
           Last Race Winner:
           {' '}
           {lastRaceResultsQuery.data!.results[0].Driver.givenName}
