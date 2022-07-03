@@ -23,11 +23,11 @@ module.exports = {
   rules: {
     'simple-import-sort/imports': 'error',
     'simple-import-sort/exports': 'error',
+    'react/prop-types': 'off',
     'react/jsx-filename-extension': [
       'error',
       { extensions: ['.js', '.jsx', '.ts', '.tsx'] },
     ],
-    'react/prop-types': 'off',
     'react/no-unstable-nested-components': [
       'error',
       { allowAsProps: true },
