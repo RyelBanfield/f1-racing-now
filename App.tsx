@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import * as Haptics from 'expo-haptics';
+import { StatusBar } from 'expo-status-bar';
 
 import TabBarIcon from './components/TabIcon';
 import ThemeSwitch from './components/ThemeSwitch';
@@ -23,6 +24,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <PaperProvider>
+        <StatusBar style={colorScheme === 'light' ? 'dark' : 'light'} />
         <NavigationContainer>
           <Tab.Navigator
             initialRouteName="Home"
@@ -44,12 +46,9 @@ function App() {
               name="F1 Racing Now"
               component={HomeScreen}
               options={{
-                tabBarIcon: ({ focused }) => (<TabBarIcon name="home" focused={focused} />),
+                tabBarIcon: ({ focused }) => (<TabBarIcon name="home" focused={focused} colorScheme={colorScheme} />),
                 headerRight: () => (
-                  <ThemeSwitch
-                    colorScheme={colorScheme}
-                    setColorScheme={setColorScheme}
-                  />
+                  <ThemeSwitch colorScheme={colorScheme} setColorScheme={setColorScheme} />
                 ),
               }}
               listeners={() => ({
@@ -61,7 +60,7 @@ function App() {
             <Tab.Screen
               name="Schedule"
               component={ScheduleScreen}
-              options={{ tabBarIcon: ({ focused }) => (<TabBarIcon name="calendar" focused={focused} />) }}
+              options={{ tabBarIcon: ({ focused }) => (<TabBarIcon name="calendar" focused={focused} colorScheme={colorScheme} />) }}
               listeners={() => ({
                 tabPress: () => {
                   Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
@@ -71,7 +70,7 @@ function App() {
             <Tab.Screen
               name="Drivers Championship"
               component={ScheduleScreen}
-              options={{ tabBarIcon: ({ focused }) => (<TabBarIcon name="user" focused={focused} />) }}
+              options={{ tabBarIcon: ({ focused }) => (<TabBarIcon name="user" focused={focused} colorScheme={colorScheme} />) }}
               listeners={() => ({
                 tabPress: () => {
                   Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
@@ -81,7 +80,7 @@ function App() {
             <Tab.Screen
               name="Constructors Championship"
               component={ScheduleScreen}
-              options={{ tabBarIcon: ({ focused }) => (<TabBarIcon name="users" focused={focused} />) }}
+              options={{ tabBarIcon: ({ focused }) => (<TabBarIcon name="users" focused={focused} colorScheme={colorScheme} />) }}
               listeners={() => ({
                 tabPress: () => {
                   Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);

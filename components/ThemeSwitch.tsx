@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
-import { ColorSchemeName } from 'react-native';
-import { Switch } from 'react-native-paper';
+import { ColorSchemeName, TouchableOpacity, View } from 'react-native';
+import { Entypo } from '@expo/vector-icons';
 
 type Props = {
   colorScheme: ColorSchemeName,
@@ -10,18 +10,18 @@ type Props = {
 function ThemeSwitch({ colorScheme, setColorScheme }: Props) {
   const [isDarkMode, setIsDarkMode] = useState(colorScheme !== 'light');
 
-  const onToggleSwitch = () => {
+  const toggleSwitch = () => {
     setIsDarkMode(!isDarkMode);
     setColorScheme(isDarkMode ? 'light' : 'dark');
   };
 
   return (
-    <Switch
-      color="#FF0000"
-      style={{ transform: [{ scaleX: 0.6 }, { scaleY: 0.6 }] }}
-      value={isDarkMode}
-      onValueChange={onToggleSwitch}
-    />
+    <View style={{ paddingRight: 20 }}>
+      <TouchableOpacity onPress={toggleSwitch}>
+        {isDarkMode && <Entypo name="moon" size={24} color="#C70039" />}
+        {!isDarkMode && <Entypo name="light-down" size={24} color="#C70039" />}
+      </TouchableOpacity>
+    </View>
   );
 }
 

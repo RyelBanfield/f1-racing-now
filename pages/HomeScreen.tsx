@@ -1,13 +1,12 @@
 import React from 'react';
 import {
-  StyleSheet, Text, useColorScheme, View,
+  StyleSheet, useColorScheme, View,
 } from 'react-native';
 import { useQuery } from 'react-query';
 
 import Container from '../components/Container';
 import Error from '../components/Error';
 import LoadingCircle from '../components/LoadingCircle';
-import ThemeSwitch from '../components/ThemeSwitch';
 import { fetchCurrentSeason, fetchLastRaceResults } from '../lib/apiCalls';
 
 const styles = StyleSheet.create({
