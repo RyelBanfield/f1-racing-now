@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { LastRace, Schedule } from '../types';
+import { LastRace, LocationPhoto, Schedule } from '../types';
 
 export const fetchCurrentSeason = async () => {
   try {
@@ -27,4 +27,15 @@ export const fetchLastRaceResults = async () => {
     };
     return lastRace;
   } catch (err) { throw new Error('Error fetching last race.'); }
+};
+
+export const fetchPhotoOfLocation = async (raceLocation: string) => {
+  try {
+    const { data } = await axios.get(`https://f1-racing-now-backend.herokuapp.com/get-photos?location=${raceLocation}`);
+    const locationPhoto: LocationPhoto = {
+      url:
+      data.response.results[Math.floor(Math.random() * data.response.results.length)].urls.regular,
+    };
+    return locationPhoto;
+  } catch (err) { throw new Error('Error fetching photo of location.'); }
 };

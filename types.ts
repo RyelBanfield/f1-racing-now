@@ -13,6 +13,9 @@ export type Schedule = {
       raceName: string,
       Circuit: {
         circuitName: string,
+        Location: {
+          locality: string,
+        }
       },
       Qualifying: {
         date: string,
@@ -45,4 +48,8 @@ export type LastRace = {
       nationality: string,
     },
   }],
+}
+
+export type LocationPhoto = {
+  url: string,
 }

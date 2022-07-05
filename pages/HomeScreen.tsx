@@ -1,7 +1,6 @@
 import React from 'react';
 import { useQuery } from 'react-query';
 
-import Container from '../components/Container';
 import Countdown from '../components/Countdown';
 import Error from '../components/Error';
 import LoadingCircle from '../components/LoadingCircle';
@@ -15,9 +14,7 @@ function HomeScreen() {
   if (currentSeasonQuery.isError || lastRaceResultsQuery.isLoading) return <Error />;
 
   return (
-    <Container>
-      <Countdown schedule={currentSeasonQuery.data!} />
-    </Container>
+    <Countdown schedule={currentSeasonQuery.data!} />
   );
 }
 
