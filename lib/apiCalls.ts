@@ -31,7 +31,7 @@ export const fetchLastRaceResults = async () => {
 
 export const fetchPhotoOfLocation = async (raceLocation: string) => {
   try {
-    const { data } = await axios.get(`https://f1-racing-now-backend.herokuapp.com/get-photos?location=${raceLocation}`);
+    const { data } = await axios.get(`https://f1-racing-now-api.herokuapp.com/get-photos?location=${raceLocation}`);
     const locationPhoto: LocationPhoto = {
       url:
       data.response.results[Math.floor(Math.random() * data.response.results.length)].urls.regular,

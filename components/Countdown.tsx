@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Card, Paragraph, Title } from 'react-native-paper';
+import { Card } from 'react-native-paper';
 import { useQuery } from 'react-query';
 import moment from 'moment';
 
@@ -38,11 +38,7 @@ export default function Countdown({ schedule }: { schedule: Schedule }) {
 
   return (
     <Card>
-      <Card.Content>
-        <Title>Next Race</Title>
-        <Paragraph>{nextRace!.raceName}</Paragraph>
-        <Paragraph>{timeUntilRace}</Paragraph>
-      </Card.Content>
+      <Card.Title title={nextRace!.raceName} subtitle={timeUntilRace} />
       <Card.Cover source={{ uri: photoOfLocationQuery.data?.url }} />
     </Card>
   );

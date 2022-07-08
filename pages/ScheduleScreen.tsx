@@ -5,7 +5,7 @@ import { useQuery } from 'react-query';
 import Container from '../components/Container';
 import { fetchCurrentSeason } from '../lib/apiCalls';
 
-function ScheduleScreen() {
+export default function ScheduleScreen() {
   const currentSeasonQuery = useQuery('currentSeason', fetchCurrentSeason);
 
   if (currentSeasonQuery.isLoading) {
@@ -39,5 +39,3 @@ function ScheduleScreen() {
     </Container>
   );
 }
-
-export default ScheduleScreen;
