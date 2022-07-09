@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { Card, DataTable, Text } from 'react-native-paper';
+import { Card, Text } from 'react-native-paper';
 import moment from 'moment';
 
-import { LastRace, Schedule } from '../types';
+import { Schedule } from '../types';
 
 const styles = StyleSheet.create({
   card: {
@@ -31,12 +31,7 @@ const styles = StyleSheet.create({
   },
 });
 
-type Props = {
-  currentSeason: Schedule,
-  lastRaceResults: LastRace
-}
-
-export default function Countdown({ currentSeason, lastRaceResults }: Props) {
+export default function Countdown({ currentSeason }: { currentSeason: Schedule }) {
   const [timeUntilRace, setTimeUntilRace] = useState<string | null>(null);
   const [timeUntilQualifying, setTimeUntilQualifying] = useState<string | null>(null);
   const [hasQualifyingFinished, setHasQualifyingFinished] = useState<boolean>(false);
@@ -81,51 +76,26 @@ export default function Countdown({ currentSeason, lastRaceResults }: Props) {
   }, [nextRace]);
 
   return (
-    <>
-      <Card style={styles.card}>
-        <Card.Content>
-          <Text style={styles.cardTitle}>{nextRace?.raceName}</Text>
-          <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
-            {!hasQualifyingFinished && (
-              (timeUntilQualifying && (
+    <Card style={styles.card}>
+      <Card.Content>
+        <Text style={styles.cardTitle}>{nextRace?.raceName}</Text>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
+          {!hasQualifyingFinished && (
+            (timeUntilQualifying && (
               <View>
                 <Text style={styles.cardSubtitle}>Quali</Text>
                 <Text style={styles.countdown}>{timeUntilQualifying}</Text>
               </View>
-              ))
-            )}
-            {timeUntilRace && (
+            ))
+          )}
+          {timeUntilRace && (
             <View>
               <Text style={styles.cardSubtitle}>Race</Text>
               <Text style={styles.countdown}>{timeUntilRace}</Text>
             </View>
-            )}
-          </View>
-        </Card.Content>
-      </Card>
-
-      <Card style={styles.card}>
-        <Card.Content>
-          <Text style={styles.cardTitle}>{lastRaceResults.raceName}</Text>
-          <Text style={styles.cardSubtitle}>Results</Text>
-        </Card.Content>
-
-        <DataTable>
-          <DataTable.Header>
-            <DataTable.Title style={{ flex: 2 }}>Driver</DataTable.Title>
-            <DataTable.Title>Team</DataTable.Title>
-            <DataTable.Title numeric>Points</DataTable.Title>
-          </DataTable.Header>
-
-          {lastRaceResults.results.map((result) => (
-            <DataTable.Row key={result.Driver.code}>
-              <DataTable.Cell style={{ flex: 2 }}>{`${result.Driver.givenName} ${result.Driver.familyName} ${result.FastestLap?.rank === '1' ? '🥇' : ''}`}</DataTable.Cell>
-              <DataTable.Cell>{result.Constructor.name}</DataTable.Cell>
-              <DataTable.Cell numeric>{result.points}</DataTable.Cell>
-            </DataTable.Row>
-          ))}
-        </DataTable>
-      </Card>
-    </>
+          )}
+        </View>
+      </Card.Content>
+    </Card>
   );
 }

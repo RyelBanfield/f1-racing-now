@@ -4,6 +4,7 @@ import { useQuery } from 'react-query';
 
 import Countdown from '../components/Countdown';
 import Error from '../components/Error';
+import LastRace from '../components/LastRace';
 import LoadingCircle from '../components/LoadingCircle';
 import { fetchCurrentSeason, fetchLastRaceResults } from '../lib/apiCalls';
 
@@ -16,10 +17,8 @@ export default function HomeScreen() {
 
   return (
     <ScrollView>
-      <Countdown
-        currentSeason={currentSeasonQuery.data!}
-        lastRaceResults={lastRaceResultsQuery.data!}
-      />
+      <Countdown currentSeason={currentSeasonQuery.data!} />
+      <LastRace lastRaceResults={lastRaceResultsQuery.data!} />
     </ScrollView>
   );
 }

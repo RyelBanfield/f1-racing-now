@@ -55,7 +55,7 @@ export default function App() {
                 }}
                 listeners={() => ({ tabPress })}
               />
-              {/* <Tab.Screen
+              <Tab.Screen
                 name="Schedule"
                 component={ScheduleScreen}
                 options={{
@@ -81,7 +81,7 @@ export default function App() {
                   headerRight: () => (<ThemeSwitch />),
                 }}
                 listeners={() => ({ tabPress })}
-              /> */}
+              />
             </Tab.Navigator>
           </NavigationContainer>
         </PaperProvider>
