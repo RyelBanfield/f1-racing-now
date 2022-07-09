@@ -1,41 +1,21 @@
 import React from 'react';
-import { Text } from 'react-native';
+import { ScrollView } from 'react-native';
 import { useQuery } from 'react-query';
 
-import Container from '../components/Container';
+import Error from '../components/Error';
+import LoadingCircle from '../components/LoadingCircle';
+import Schedule from '../components/Schedule';
 import { fetchCurrentSeason } from '../lib/apiCalls';
 
 export default function ScheduleScreen() {
   const currentSeasonQuery = useQuery('currentSeason', fetchCurrentSeason);
 
-  if (currentSeasonQuery.isLoading) {
-    return (
-      <Container>
-        <Text>Loading...</Text>
-      </Container>
-    );
-  }
-
-  if (currentSeasonQuery.isError) {
-    return (
-      <Container>
-        <Text>There was an error.</Text>
-      </Container>
-    );
-  }
+  if (currentSeasonQuery.isLoading) return <LoadingCircle />;
+  if (currentSeasonQuery.isError) return <Error />;
 
   return (
-    <Container>
-      <Text>Full Schedule</Text>
-
-      <Text>
-        There are
-        {' '}
-        {currentSeasonQuery.data!.totalRaces}
-        {' '}
-        races this season.
-      </Text>
-
-    </Container>
+    <ScrollView>
+      <Schedule currentSeason={currentSeasonQuery.data!} />
+    </ScrollView>
   );
 }
