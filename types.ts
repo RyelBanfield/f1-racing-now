@@ -39,7 +39,7 @@ export type LastRace = {
       givenName: string,
       familyName: string,
       code: string,
-      number: string,
+      permanentNumber: string,
       dateOfBirth: string,
       nationality: string
     }

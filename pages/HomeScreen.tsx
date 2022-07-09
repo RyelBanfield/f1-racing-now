@@ -1,4 +1,5 @@
 import React from 'react';
+import { ScrollView } from 'react-native';
 import { useQuery } from 'react-query';
 
 import Countdown from '../components/Countdown';
@@ -14,6 +15,11 @@ export default function HomeScreen() {
   if (currentSeasonQuery.isError || lastRaceResultsQuery.isLoading) return <Error />;
 
   return (
-    <Countdown schedule={currentSeasonQuery.data!} />
+    <ScrollView>
+      <Countdown
+        currentSeason={currentSeasonQuery.data!}
+        lastRaceResults={lastRaceResultsQuery.data!}
+      />
+    </ScrollView>
   );
 }
