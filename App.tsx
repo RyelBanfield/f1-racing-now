@@ -47,7 +47,7 @@ export default function App() {
               }}
             >
               <Tab.Screen
-                name="F1 Racing Now"
+                name="Home"
                 component={HomeScreen}
                 options={{
                   tabBarIcon: ({ focused }) => (<TabBarIcon name="home" focused={focused} />),

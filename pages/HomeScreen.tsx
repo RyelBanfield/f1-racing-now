@@ -6,18 +6,18 @@ import Countdown from '../components/Countdown';
 import Error from '../components/Error';
 import LastRace from '../components/LastRace';
 import LoadingCircle from '../components/LoadingCircle';
-import { fetchCurrentSeason, fetchLastRaceResults } from '../lib/apiCalls';
+import { fetchLastRaceResults, fetchNextRace } from '../lib/apiCalls';
 
 export default function HomeScreen() {
-  const currentSeasonQuery = useQuery('currentSeason', fetchCurrentSeason);
+  const nextRaceQuery = useQuery('nextRace', fetchNextRace);
   const lastRaceResultsQuery = useQuery('lastRaceResults', fetchLastRaceResults);
 
-  if (currentSeasonQuery.isLoading || lastRaceResultsQuery.isLoading) return <LoadingCircle />;
-  if (currentSeasonQuery.isError || lastRaceResultsQuery.isLoading) return <Error />;
+  if (nextRaceQuery.isLoading || lastRaceResultsQuery.isLoading) return <LoadingCircle />;
+  if (nextRaceQuery.isError || lastRaceResultsQuery.isLoading) return <Error />;
 
   return (
     <ScrollView>
-      <Countdown currentSeason={currentSeasonQuery.data!} />
+      <Countdown nextRace={nextRaceQuery.data!} />
       <LastRace lastRaceResults={lastRaceResultsQuery.data!} />
     </ScrollView>
   );

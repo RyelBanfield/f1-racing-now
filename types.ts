@@ -3,6 +3,27 @@ export type StackParamList = {
   Schedule: undefined,
 };
 
+export type NextRace = {
+  season: string,
+  round: string,
+  raceData: {
+    raceName: string,
+    Circuit: {
+      circuitName: string,
+      Location: {
+        locality: string,
+        country: string,
+      }
+    }
+    date: string,
+    time: string,
+    Qualifying: {
+      date: string,
+      time: string,
+    }
+  }
+}
+
 export type Schedule = {
   year: string,
   totalRaces: string,

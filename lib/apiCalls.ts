@@ -1,6 +1,20 @@
 import axios from 'axios';
 
-import { LastRace, LocationPhoto, Schedule } from '../types';
+import {
+  LastRace, LocationPhoto, NextRace, Schedule,
+} from '../types';
+
+export const fetchNextRace = async () => {
+  try {
+    const { data } = await axios.get('https://ergast.com/api/f1/current/next.json');
+    const nextRace: NextRace = {
+      season: data.MRData.RaceTable.season,
+      round: data.MRData.RaceTable.round,
+      raceData: data.MRData.RaceTable.Races[0],
+    };
+    return nextRace;
+  } catch (err) { throw new Error('Error fetching next race.'); }
+};
 
 export const fetchCurrentSeason = async () => {
   try {
