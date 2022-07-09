@@ -22,13 +22,19 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
   },
+  countdown: {
+    fontSize: 15,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginBottom: 20,
+  },
   dateTime: {
     fontSize: 14,
     textAlign: 'center',
   },
 });
 
-export default function Countdown({ nextRace }: { nextRace: NextRace }) {
+export default function Header({ nextRace }: { nextRace: NextRace }) {
   const [timeUntilRace, setTimeUntilRace] = useState<string | null>(null);
 
   useEffect(() => {
@@ -50,11 +56,15 @@ export default function Countdown({ nextRace }: { nextRace: NextRace }) {
   return (
     <Card style={styles.card}>
       <Card.Content>
-        <Text style={styles.cardTitle}>
-          Round
-          {' '}
-          {nextRace?.round}
-        </Text>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between', minHeight: 60 }}>
+          <Text style={styles.cardTitle}>
+            Round
+            {' '}
+            {nextRace?.round}
+          </Text>
+
+          <Text style={styles.countdown}>{timeUntilRace}</Text>
+        </View>
 
         <Text style={styles.cardTitle}>
           {nextRace?.raceData.raceName}
@@ -72,11 +82,6 @@ export default function Countdown({ nextRace }: { nextRace: NextRace }) {
             <Text style={styles.cardSubtitle}>Race</Text>
             <Text style={styles.dateTime}>{(moment(`${nextRace?.raceData.date} ${nextRace?.raceData.time}`).format('ddd Do h:mma'))}</Text>
           </View>
-        </View>
-
-        <View>
-          <Text style={styles.cardSubtitle}>Race Start</Text>
-          <Text style={styles.dateTime}>{timeUntilRace}</Text>
         </View>
       </Card.Content>
     </Card>

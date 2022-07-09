@@ -2,20 +2,20 @@ import React from 'react';
 import { ScrollView } from 'react-native';
 import { useQuery } from 'react-query';
 
+import Calendar from '../components/Calendar';
 import Error from '../components/Error';
 import LoadingCircle from '../components/LoadingCircle';
-import Schedule from '../components/Schedule';
-import { fetchCurrentSeason } from '../lib/apiCalls';
+import { fetchSchedule } from '../lib/apiCalls';
 
 export default function ScheduleScreen() {
-  const currentSeasonQuery = useQuery('currentSeason', fetchCurrentSeason);
+  const scheduleQuery = useQuery('schedule', fetchSchedule);
 
-  if (currentSeasonQuery.isLoading) return <LoadingCircle />;
-  if (currentSeasonQuery.isError) return <Error />;
+  if (scheduleQuery.isLoading) return <LoadingCircle />;
+  if (scheduleQuery.isError) return <Error />;
 
   return (
     <ScrollView>
-      <Schedule currentSeason={currentSeasonQuery.data!} />
+      <Calendar schedule={scheduleQuery.data!} />
     </ScrollView>
   );
 }

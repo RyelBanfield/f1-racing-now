@@ -9,28 +9,34 @@ const styles = StyleSheet.create({
     margin: 15,
     borderRadius: 10,
     elevation: 5,
-    minHeight: 160,
+    minHeight: 240,
   },
   cardTitle: {
     fontSize: 25,
     fontWeight: 'bold',
-    textAlign: 'center',
     marginBottom: 20,
   },
   cardSubtitle: {
     fontSize: 20,
     fontWeight: 'bold',
     textAlign: 'center',
-    marginBottom: 20,
+  },
+  dateTime: {
+    fontSize: 14,
+    textAlign: 'center',
   },
 });
 
-export default function Countdown({ lastRaceResults }: { lastRaceResults: LastRace }) {
+export default function Countdown({ lastRace }: { lastRace: LastRace }) {
   return (
     <Card style={styles.card}>
       <Card.Content>
-        <Text style={styles.cardTitle}>{lastRaceResults.raceName}</Text>
-        <Text style={styles.cardSubtitle}>Results</Text>
+        <Text style={styles.cardTitle}>
+          Round
+          {' '}
+          {lastRace.round}
+        </Text>
+        <Text style={styles.cardTitle}>{lastRace.raceData.raceName}</Text>
       </Card.Content>
 
       <DataTable>
@@ -40,9 +46,9 @@ export default function Countdown({ lastRaceResults }: { lastRaceResults: LastRa
           <DataTable.Title numeric>Points</DataTable.Title>
         </DataTable.Header>
 
-        {lastRaceResults.results.map((result) => (
+        {lastRace.raceData.Results.map((result) => (
           <DataTable.Row key={result.Driver.code}>
-            <DataTable.Cell style={{ flex: 2 }}>{`${result.Driver.givenName} ${result.Driver.familyName} ${result.FastestLap?.rank === '1' ? '🥇' : ''}`}</DataTable.Cell>
+            <DataTable.Cell style={{ flex: 2 }}>{`${result.Driver.givenName} ${result.Driver.familyName} ${result.FastestLap?.rank === '1' ? '⚡️' : ''}`}</DataTable.Cell>
             <DataTable.Cell>{result.Constructor.name}</DataTable.Cell>
             <DataTable.Cell numeric>{result.points}</DataTable.Cell>
           </DataTable.Row>

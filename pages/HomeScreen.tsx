@@ -2,23 +2,23 @@ import React from 'react';
 import { ScrollView } from 'react-native';
 import { useQuery } from 'react-query';
 
-import Countdown from '../components/Countdown';
 import Error from '../components/Error';
+import Header from '../components/Header';
 import LastRace from '../components/LastRace';
 import LoadingCircle from '../components/LoadingCircle';
-import { fetchLastRaceResults, fetchNextRace } from '../lib/apiCalls';
+import { fetchLastRace, fetchNextRace } from '../lib/apiCalls';
 
 export default function HomeScreen() {
   const nextRaceQuery = useQuery('nextRace', fetchNextRace);
-  const lastRaceResultsQuery = useQuery('lastRaceResults', fetchLastRaceResults);
+  const lastRaceQuery = useQuery('lastRace', fetchLastRace);
 
-  if (nextRaceQuery.isLoading || lastRaceResultsQuery.isLoading) return <LoadingCircle />;
-  if (nextRaceQuery.isError || lastRaceResultsQuery.isLoading) return <Error />;
+  if (nextRaceQuery.isLoading || lastRaceQuery.isLoading) return <LoadingCircle />;
+  if (nextRaceQuery.isError || lastRaceQuery.isLoading) return <Error />;
 
   return (
     <ScrollView>
-      <Countdown nextRace={nextRaceQuery.data!} />
-      <LastRace lastRaceResults={lastRaceResultsQuery.data!} />
+      <Header nextRace={nextRaceQuery.data!} />
+      <LastRace lastRace={lastRaceQuery.data!} />
     </ScrollView>
   );
 }
