@@ -11,6 +11,8 @@ import { StatusBar } from 'expo-status-bar';
 import TabBarIcon from './components/TabBarIcon';
 import ThemeSwitch from './components/ThemeSwitch';
 import PreferencesContext from './context/Preferences';
+import ConstructorChampionshipScreen from './pages/ConstructorChampionshipScreen';
+import DriverChampionshipScreen from './pages/DriverChampionshipScreen';
 import HomeScreen from './pages/HomeScreen';
 import ScheduleScreen from './pages/ScheduleScreen';
 
@@ -64,9 +66,9 @@ export default function App() {
                 }}
                 listeners={() => ({ tabPress })}
               />
-              {/* <Tab.Screen
+              <Tab.Screen
                 name="Drivers Championship"
-                component={ScheduleScreen}
+                component={DriverChampionshipScreen}
                 options={{
                   tabBarIcon: ({ focused }) => (<TabBarIcon name="user" focused={focused} />),
                   headerRight: () => (<ThemeSwitch />),
@@ -75,13 +77,13 @@ export default function App() {
               />
               <Tab.Screen
                 name="Constructors Championship"
-                component={ScheduleScreen}
+                component={ConstructorChampionshipScreen}
                 options={{
                   tabBarIcon: ({ focused }) => (<TabBarIcon name="users" focused={focused} />),
                   headerRight: () => (<ThemeSwitch />),
                 }}
                 listeners={() => ({ tabPress })}
-              /> */}
+              />
             </Tab.Navigator>
           </NavigationContainer>
         </PaperProvider>

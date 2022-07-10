@@ -66,11 +66,7 @@ export default function Header({ nextRace }: { nextRace: NextRace }) {
           <Text style={styles.countdown}>{timeUntilRace}</Text>
         </View>
 
-        <Text style={styles.cardTitle}>
-          {nextRace?.raceData.raceName}
-          {' '}
-          {nextRace?.season}
-        </Text>
+        <Text style={styles.cardTitle}>{nextRace?.raceData.raceName}</Text>
 
         <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', marginBottom: 20 }}>
           <View>

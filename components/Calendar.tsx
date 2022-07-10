@@ -21,10 +21,10 @@ const styles = StyleSheet.create({
 
 export default function Calendar({ schedule }: { schedule: scheduleType }) {
   return (
-    <Card style={styles.card}>
+    <Card>
       <Card.Content>
         <Text style={styles.cardTitle}>
-          {schedule.year}
+          {schedule.season}
           {' '}
           Season
         </Text>
@@ -36,7 +36,7 @@ export default function Calendar({ schedule }: { schedule: scheduleType }) {
           <DataTable.Title numeric>Date</DataTable.Title>
         </DataTable.Header>
 
-        {schedule.races.map((race) => (
+        {schedule.raceData.map((race) => (
           <DataTable.Row key={race.round}>
             <DataTable.Cell>{race.raceName}</DataTable.Cell>
             <DataTable.Cell numeric>{moment(race.date).format('DD-MM')}</DataTable.Cell>

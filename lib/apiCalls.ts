@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 import {
-  LastRace, NextRace, Schedule,
+  ConstructorStandings, DriverStandings, LastRace, NextRace, Schedule,
 } from '../types';
 
 export const fetchNextRace = async () => {
@@ -32,10 +32,33 @@ export const fetchSchedule = async () => {
   try {
     const { data } = await axios.get('https://ergast.com/api/f1/current.json');
     const schedule: Schedule = {
-      year: data.MRData.RaceTable.season,
-      totalRaces: data.MRData.total,
-      races: data.MRData.RaceTable.Races,
+      season: data.MRData.RaceTable.season,
+      raceData: data.MRData.RaceTable.Races,
     };
     return schedule;
   } catch (err) { throw new Error('Error fetching schedule.'); }
+};
+
+export const fetchDriverStandings = async () => {
+  try {
+    const { data } = await axios.get('https://ergast.com/api/f1/current/driverStandings.json');
+    const driverStandings: DriverStandings = {
+      season: data.MRData.StandingsTable.StandingsLists[0].season,
+      round: data.MRData.StandingsTable.StandingsLists[0].round,
+      dataTable: data.MRData.StandingsTable.StandingsLists[0].DriverStandings,
+    };
+    return driverStandings;
+  } catch (err) { throw new Error('Error fetching driver standings.'); }
+};
+
+export const fetchConstructorStandings = async () => {
+  try {
+    const { data } = await axios.get('https://ergast.com/api/f1/current/constructorStandings.json');
+    const constructorStandings: ConstructorStandings = {
+      season: data.MRData.StandingsTable.StandingsLists[0].season,
+      round: data.MRData.StandingsTable.StandingsLists[0].round,
+      dataTable: data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings,
+    };
+    return constructorStandings;
+  } catch (err) { throw new Error('Error fetching constructor standings.'); }
 };
