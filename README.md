@@ -12,7 +12,9 @@ A React Native app built by an F1 fan.
 
 ## Screenshots
 
-  <img src="./screenshots/Home.png" width="250" />
-  <img src="./screenshots/Schedule.png" width="250" /> 
-  <img src="./screenshots/Drivers.png" width="250" /> 
-  <img src="./screenshots/Constructors.png" width="250" />
+<div style="display: flex">
+  <img src="./screenshots/Home.png" width="200" style="margin: 5px"/>
+  <img src="./screenshots/Schedule.png" width="200" style="margin: 5px"/> 
+  <img src="./screenshots/Drivers.png" width="200" style="margin: 5px"/> 
+  <img src="./screenshots/Constructors.png" width="200" style="margin: 5px"/>
+</div>
