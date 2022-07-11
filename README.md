@@ -12,4 +12,7 @@ A React Native app built by an F1 fan.
 
 ## Screenshots
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![App Screenshot](./screenshots/Home.png)
+![App Screenshot](./screenshots/Schedule.png)
+![App Screenshot](./screenshots/Drivers.png)
+![App Screenshot](./screenshots/Constructors.png)
