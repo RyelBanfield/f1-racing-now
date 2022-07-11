@@ -6,9 +6,12 @@ A React Native app built by an F1 fan.
 
 - Light/dark mode toggle
 - Countdown to next race
+- Time of qualifying session and race
+- Results of last race
 - See full season schedule
 - See Driver and Constructor points
-- View HD F1 images
+
+  <s>- View HD F1 images</s>
 
 ## Screenshots
 
