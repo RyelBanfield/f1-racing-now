@@ -9,7 +9,6 @@ const styles = StyleSheet.create({
     margin: 15,
     borderRadius: 10,
     elevation: 5,
-    minHeight: 240,
   },
   cardTitle: {
     fontSize: 25,
@@ -29,7 +28,7 @@ const styles = StyleSheet.create({
 
 export default function Countdown({ lastRace }: { lastRace: LastRace }) {
   return (
-    <Card style={styles.card}>
+    <>
       <Card.Content>
         <Text style={styles.cardTitle}>
           Round
@@ -54,6 +53,6 @@ export default function Countdown({ lastRace }: { lastRace: LastRace }) {
           </DataTable.Row>
         ))}
       </DataTable>
-    </Card>
+    </>
   );
 }

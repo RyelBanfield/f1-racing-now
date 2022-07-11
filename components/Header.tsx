@@ -23,10 +23,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   countdown: {
-    fontSize: 15,
+    fontSize: 25,
     fontWeight: 'bold',
     textAlign: 'center',
-    marginBottom: 20,
   },
   dateTime: {
     fontSize: 14,
@@ -47,39 +46,42 @@ export default function Header({ nextRace }: { nextRace: NextRace }) {
       const minutes = raceDateTime.subtract(hours, 'hours').diff(now, 'minutes');
       const seconds = raceDateTime.subtract(minutes, 'minutes').diff(now, 'seconds');
 
-      setTimeUntilRace(`${days}D ${hours}H ${minutes}M ${seconds}S`);
+      setTimeUntilRace(`${days}:${hours}:${minutes}:${seconds}`);
     }, 1000);
 
     return () => clearInterval(interval);
   }, [nextRace]);
 
   return (
-    <Card style={styles.card}>
-      <Card.Content>
-        <View style={{ flexDirection: 'row', justifyContent: 'space-between', minHeight: 60 }}>
-          <Text style={styles.cardTitle}>
-            Round
-            {' '}
-            {nextRace?.round}
-          </Text>
+    <Card.Content>
+      <View style={{
+        flexDirection: 'row', justifyContent: 'space-between', paddingTop: 20, paddingBottom: 10,
+      }}
+      >
+        <Text style={styles.cardTitle}>
+          Round
+          {' '}
+          {nextRace?.round}
+        </Text>
 
-          <Text style={styles.countdown}>{timeUntilRace}</Text>
-        </View>
+        <Text style={styles.countdown}>{timeUntilRace}</Text>
+      </View>
 
+      <View style={{ paddingBottom: 10 }}>
         <Text style={styles.cardTitle}>{nextRace?.raceData.raceName}</Text>
+      </View>
 
-        <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', marginBottom: 20 }}>
-          <View>
-            <Text style={styles.cardSubtitle}>Quali</Text>
-            <Text style={styles.dateTime}>{(moment(`${nextRace.raceData.Qualifying.date} ${nextRace.raceData.Qualifying.time}`).format('ddd Do h:mma'))}</Text>
-          </View>
-
-          <View>
-            <Text style={styles.cardSubtitle}>Race</Text>
-            <Text style={styles.dateTime}>{(moment(`${nextRace?.raceData.date} ${nextRace?.raceData.time}`).format('ddd Do h:mma'))}</Text>
-          </View>
+      <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', paddingBottom: 20 }}>
+        <View>
+          <Text style={styles.cardSubtitle}>Quali</Text>
+          <Text style={styles.dateTime}>{(moment(`${nextRace.raceData.Qualifying.date} ${nextRace.raceData.Qualifying.time}`).format('ddd Do h:mma'))}</Text>
         </View>
-      </Card.Content>
-    </Card>
+
+        <View>
+          <Text style={styles.cardSubtitle}>Race</Text>
+          <Text style={styles.dateTime}>{(moment(`${nextRace?.raceData.date} ${nextRace?.raceData.time}`).format('ddd Do h:mma'))}</Text>
+        </View>
+      </View>
+    </Card.Content>
   );
 }

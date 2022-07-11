@@ -1,5 +1,6 @@
 import React from 'react';
 import { ScrollView } from 'react-native';
+import { Card, Divider } from 'react-native-paper';
 import { useQuery } from 'react-query';
 
 import Error from '../components/Error';
@@ -17,8 +18,11 @@ export default function HomeScreen() {
 
   return (
     <ScrollView>
-      <Header nextRace={nextRaceQuery.data!} />
-      <LastRace lastRace={lastRaceQuery.data!} />
+      <Card>
+        <Header nextRace={nextRaceQuery.data!} />
+        <Divider style={{ marginBottom: 20 }} />
+        <LastRace lastRace={lastRaceQuery.data!} />
+      </Card>
     </ScrollView>
   );
 }
