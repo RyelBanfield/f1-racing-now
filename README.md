@@ -1,6 +1,6 @@
 # F1 Racing Now
 
-A React Native app built by an F1 fan.
+A React Native/Typescript app built by an F1 fan.
 
 ## Features
 
